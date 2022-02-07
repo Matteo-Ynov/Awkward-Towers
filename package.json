@@ -1,0 +1,27 @@
+{
+    "name": "awkward-towers",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "electron .",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Matteo-Ynov/Awkward-Towers.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Matteo-Ynov/Awkward-Towers/issues"
+    },
+    "homepage": "https://github.com/Matteo-Ynov/Awkward-Towers#readme",
+    "devDependencies": {
+        "electron": "^17.0.0"
+    },
+    "dependencies": {
+        "matter-js": "^0.18.0"
+    }
+}
