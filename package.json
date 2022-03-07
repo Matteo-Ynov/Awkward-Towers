@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/Matteo-Ynov/Awkward-Towers/issues"
   },
-  "homepage": "https://github.com/Matteo-Ynov/Awkward-Towers#readme"
+  "homepage": "https://github.com/Matteo-Ynov/Awkward-Towers#readme",
+  "dependencies": {
+    "body-parser": "^1.19.2",
+    "express": "^4.17.3",
+    "mongodb": "^4.4.0"
+  }
 }
