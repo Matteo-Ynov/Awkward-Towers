@@ -10,8 +10,9 @@ const getShapeFromInt = (shapeId, mouseX, rotation) => {
             return new SShape(mouseX, rotation);
         case 4:
             return new ZShape(mouseX, rotation);
-
-        default:
-            return new TShape(mouseX, rotation);
+        case 5:
+            return new OShape(mouseX, rotation);
+        case 6:
+            return new IShape(mouseX, rotation);
     }
 };

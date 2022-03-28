@@ -1,3 +1,8 @@
+var Engine = Matter.Engine,
+    World = Matter.World,
+    Bodies = Matter.Bodies,
+    Runner = Matter.Runner;
+
 var TShapeImage;
 var LShapeImage;
 var JShapeImage;
@@ -6,9 +11,15 @@ var ZShapeImage;
 var OShapeImage;
 var IShapeImage;
 
+var groundImage;
+
 var allShapes;
 
 function preload() {
+    groundImage = loadImage("../assets/base.png", () => {
+        groundImage.resize(600, 150);
+    });
+
     TShapeImage = loadImage("../assets/shapes-images/T-Shape.png", () => {
         TShapeImage.resize(150, 100);
     });
@@ -37,7 +48,7 @@ function preload() {
         JShapeImage,
         SShapeImage,
         ZShapeImage,
-        // OShapeImage,
-        // IShapeImage,
+        OShapeImage,
+        IShapeImage,
     ];
 }
