@@ -2,6 +2,7 @@ const { response } = require("express");
 const res = require("express/lib/response");
 const Users = require("../models/Users");
 
+
 const UsersController = {
   findAll: async (request, response) => {
     try {
