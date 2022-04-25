@@ -5,7 +5,7 @@ function registerFormSubmit() {
   const usernameData = document.getElementById("username").value
   const passwordData = document.getElementById("password").value
   const HashedPassword = passwordHash.generate(passwordData)
-
+  console.log(usernameData, HashedPassword)
   const data = JSON.stringify({
     username: usernameData,
     password: HashedPassword,
@@ -13,8 +13,8 @@ function registerFormSubmit() {
     gold: 0,
     elo: 0,
     connected: false,
-    last_connection: new Date().toLocaleDateString()
   })
+  console.log(data)
   const xhr = new XMLHttpRequest()
   xhr.withCredentials = true
 

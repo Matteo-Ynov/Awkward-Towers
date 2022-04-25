@@ -64,6 +64,19 @@ canvas {
     background-color: #000;
 }
 
+.menu-elements {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px #000;
+    cursor: pointer;
+    text-decoration: none;
+    color: #000;
+    text-align: center;
+}
+
 .menu-element {
     width: 100%;
     height: auto;
