@@ -30,7 +30,7 @@ app.on("ready", () => {
       session.defaultSession.cookies.get({ url: 'http://awkward-towers' })
       .then((cookies) => {
         if (cookies.length !== 0) {
-          window.webContents.send("cookieok")
+          window.webContents.send("cookieok", cookies)
         } else {
           window.webContents.send("nocookie")
         }

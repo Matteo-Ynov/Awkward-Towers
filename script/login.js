@@ -17,7 +17,6 @@ function validate() {
     })
 }
 
-
 async function getCookies() {
   const {ipcRenderer} = require("electron");
   await ipcRenderer.send("getCookies")
@@ -26,3 +25,4 @@ async function getCookies() {
 ipcRenderer.on("nocookie", (e, cookies) => {
   window.location.href = './index.html'
 })
+
