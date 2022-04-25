@@ -13,7 +13,7 @@ app.on("ready", () => {
         autoHideMenuBar: false,
     });
     window.webContents.openDevTools();
-    window.loadFile("./static/index.html");
+    window.loadFile("./static/game.html");
     window.maximize();
 
     window.on("closed", () => {

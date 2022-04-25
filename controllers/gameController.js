@@ -20,36 +20,64 @@ class gameController {
         this.cooldownInterval;
         this.shutdownCooldown;
 
+        this.shapeToPlace = WINDOW_WIDTH / 2;
+
         Matter.Common.setDecomp(require("poly-decomp"));
-        this.generateNextShape();
+
+        this.lives = 5;
+
+        this.currentOffset = 0;
+        this.offSetTarget = 0;
+        this.currentOffsetLoop;
     }
 
     generateNextShape() {
+        if (
+            this.objects.length > 0 &&
+            this.objects[this.objects.length - 1].body.position.y < WINDOW_HEIGHT / 2
+        ) {
+            this.addOffset(
+                WINDOW_HEIGHT / 2 -
+                this.objects[this.objects.length - 1].body.position.y
+            );
+            // console.log(this.objects[-1].body.position.y);
+        }
         this.nextShape = Math.floor(Math.random() * allShapes.length);
+        this.currentShape = getShapeFromInt(this.nextShape);
     }
 
     draw() {
         clear();
         fill(255);
         if (!this.cooldown) {
-            push();
-            translate(mouseX, 100);
-            rotate((this.currentRotation * PI) / 180);
-            image(allShapes[this.nextShape], -75, -50);
-            pop();
+            this.currentShape.show();
         }
-        image(groundImage, WINDOW_WIDTH / 2 - 300, WINDOW_HEIGHT - 75, 600, 150);
+        image(
+            groundImage,
+            WINDOW_WIDTH / 2 - 300,
+            this.ground.position.y - 75,
+            600,
+            150
+        );
         for (var i = 0; i < this.objects.length; i++) {
             this.objects[i].show();
+        }
+
+        for (var i = 5; i > 0; i--) {
+            image(
+                i > this.lives ? heartEmptyImage : heartImage,
+                WINDOW_WIDTH - 65 * 5 + (i - 1) * 65,
+                10,
+                60,
+                60
+            );
         }
     }
 
     dropShape() {
         if (!this.cooldown) {
-            this.objects.push(
-                getShapeFromInt(this.nextShape, mouseX, this.currentRotation)
-            );
-            this.generateNextShape();
+            this.currentShape.drop();
+            this.objects.push(this.currentShape);
             this.cooldown = true;
             setTimeout(() => {
                 this.updateCooldown();
@@ -63,15 +91,17 @@ class gameController {
         this.shutdownCooldown = setTimeout(() => {
             if (
                 this.objects.length > 0 &&
-                this.objects[this.objects.length - 1].body.speed < 0.4
+                this.objects[this.objects.length - 1].body.speed < 0.8
             ) {
                 this.objects[this.objects.length - 1].body.isStatic = true;
                 this.cooldown = false;
+                this.generateNextShape();
+                this.currentRotation = 0;
                 clearInterval(this.cooldownInterval);
             } else {
                 this.shutdownCooldownHandler();
             }
-        }, 3000);
+        }, 5000);
     }
 
     updateCooldown() {
@@ -84,13 +114,18 @@ class gameController {
             ) {
                 this.objects[this.objects.length - 1].body.isStatic = true;
                 this.cooldown = false;
+                this.generateNextShape();
+                this.currentRotation = 0;
                 clearInterval(this.cooldownInterval);
                 clearTimeout(this.shutdownCooldown);
             } else if (
                 this.objects[this.objects.length - 1].body.position.y > WINDOW_HEIGHT
             ) {
+                this.lives -= 1;
                 this.removeLastShape();
                 this.cooldown = false;
+                this.generateNextShape();
+                this.currentRotation = 0;
                 clearInterval(this.cooldownInterval);
                 clearTimeout(this.shutdownCooldown);
             }
@@ -107,5 +142,36 @@ class gameController {
     removeLastShape() {
         var e = this.objects.pop();
         World.remove(this.world, e.body);
+    }
+
+    moveShape(direction) {
+        if (!this.cooldown) {
+            this.currentShape.move(direction);
+        }
+    }
+    rotateShape() {
+        if (!this.cooldown) {
+            // this.currentRotation += 90;
+            // if (this.currentRotation == 360) {
+            //     this.currentRotation = 0;
+            // }
+            this.currentShape.rotate(90);
+        }
+    }
+
+    addOffset(value) {
+        this.offSetTarget = value;
+        this.currentOffsetLoop = setInterval(() => {
+            Matter.Body.translate(this.ground, { x: 0, y: 1 });
+            for (var i = 0; i < this.objects.length; i++) {
+                Matter.Body.translate(this.objects[i].body, { x: 0, y: 1 });
+            }
+            this.currentOffset += 1;
+            if (this.currentOffset >= this.offSetTarget) {
+                this.offSetTarget = 0;
+                this.currentOffset = 0;
+                clearInterval(this.currentOffsetLoop);
+            }
+        }, 10);
     }
 }
