@@ -4,7 +4,7 @@ class Shape {
         this.body.isStatic = true;
         this.img = createImage(100, 100);
         this.body.friction = 0.9;
-        this.body.restitution = 0;
+        this.body.restitution = 0.1;
 
         World.add(game.world, this.body);
 

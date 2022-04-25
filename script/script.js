@@ -11,10 +11,12 @@ var setup = () => {
 var draw = () => {
     game.draw();
 
-    if (keyIsDown(LEFT_ARROW)) {
-        game.moveShape(-1);
-    } else if (keyIsDown(RIGHT_ARROW)) {
-        game.moveShape(1);
+    if (game.isPlaying) {
+        if (keyIsDown(LEFT_ARROW)) {
+            game.moveShape(-1);
+        } else if (keyIsDown(RIGHT_ARROW)) {
+            game.moveShape(1);
+        }
     }
 };
 
@@ -23,11 +25,13 @@ var draw = () => {
 // };
 
 var keyPressed = () => {
-    if (keyCode === 32) {
-        game.dropShape();
-    }
-    if (keyCode === UP_ARROW) {
-        game.rotateShape();
+    if (game.isPlaying) {
+        if (keyCode === 32) {
+            game.dropShape();
+        }
+        if (keyCode === UP_ARROW) {
+            game.rotateShape();
+        }
     }
 };
 

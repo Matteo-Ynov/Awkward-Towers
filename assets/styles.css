@@ -3,19 +3,20 @@ body {
     padding: 0;
     margin: 0;
     background: linear-gradient(to bottom right, #1e3c72, #2a5298);
+    display: flex;
 }
 
 canvas {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: -1;
 }
 
 #content {
     width: 100%;
     height: 100%;
-    position: relative;
+    position: absolute;
     z-index: 2;
 }
 
@@ -40,7 +41,7 @@ canvas {
     transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
-  }
+}
 
 .lefted {
     position: fixed;
@@ -106,4 +107,40 @@ canvas {
 
 .card-title {
     color: #fff;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.endgame-panel {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    border-radius: 10px;
+    border: 2px solid #fff;
+    z-index: 10;
+}
+
+.endgame-panel h1 {
+    color: #fff;
+    font-size: 30px;
+}
+
+.endgame-panel p {
+    color: #fff;
+    font-size: 20px;
+}
+
+.hide {
+    display: none;
 }

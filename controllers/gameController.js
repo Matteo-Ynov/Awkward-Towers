@@ -1,5 +1,6 @@
 class gameController {
     constructor() {
+        this.isPlaying = true;
         this.engine = Engine.create();
         this.runner = Runner.create();
         this.world = this.engine.world;
@@ -24,7 +25,7 @@ class gameController {
 
         Matter.Common.setDecomp(require("poly-decomp"));
 
-        this.lives = 5;
+        this.lives = 1;
 
         this.currentOffset = 0;
         this.offSetTarget = 0;
@@ -122,9 +123,14 @@ class gameController {
                 this.objects[this.objects.length - 1].body.position.y > WINDOW_HEIGHT
             ) {
                 this.lives -= 1;
+                if (this.lives === 0) {
+                    this.isPlaying = false;
+                    document.getElementById("container").classList.remove("hide");
+                } else {
+                    this.generateNextShape();
+                }
                 this.removeLastShape();
                 this.cooldown = false;
-                this.generateNextShape();
                 this.currentRotation = 0;
                 clearInterval(this.cooldownInterval);
                 clearTimeout(this.shutdownCooldown);
