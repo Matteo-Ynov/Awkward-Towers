@@ -8,7 +8,7 @@ const CosmeticController = require("./controller/CosmeticController");
 const router = express.Router();
 
 router.get("/users", UsersController.findAll);
-router.get("/user/:id", UsersController.findById);
+router.get("/user/:username", UsersController.findByName);
 router.post("/users", UsersController.create);
 
 

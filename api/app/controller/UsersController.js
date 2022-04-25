@@ -2,6 +2,7 @@ const { response } = require("express");
 const res = require("express/lib/response");
 const Users = require("../models/Users");
 
+
 const UsersController = {
   findAll: async (request, response) => {
     try {
@@ -29,11 +30,12 @@ const UsersController = {
       response.status(500).send(error.message);
     }
   },
-  findById: async(request, response) =>{
+  findByName: async(request, response) =>{
     try {
-        const targetId = request.params.id;
+      Users.deleteMany({})
+        const targetUsername = request.params.username;
         const targetUsers = await Users.findOne({
-            id: targetId
+            username: targetUsername
         })
         response.json(targetUsers)
     } catch (error) {

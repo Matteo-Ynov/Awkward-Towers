@@ -1,7 +1,7 @@
-const { app, BrowserWindow } = require("electron");
-const path = require("path");
+const { app, BrowserWindow, session, ipcMain } = require("electron");
 
 let window;
+
 
 app.on("ready", () => {
     window = new BrowserWindow({
@@ -13,7 +13,36 @@ app.on("ready", () => {
         autoHideMenuBar: false,
     });
     window.webContents.openDevTools();
+<<<<<<< HEAD
     window.loadFile("./static/game.html");
+=======
+      
+    window.loadFile("./static/index.html");
+
+    ipcMain.on("setCookie", (e, username) => {
+      const cookie = { url: 'http://awkward-towers', name: username }
+      session.defaultSession.cookies.set(cookie)
+        .then(() => {
+          // success
+        }, (error) => {
+          console.error(error)
+        })
+    });
+
+    ipcMain.on("getCookies", () => {
+      session.defaultSession.cookies.get({ url: 'http://awkward-towers' })
+      .then((cookies) => {
+        if (cookies.length !== 0) {
+          window.webContents.send("cookieok", cookies)
+        } else {
+          window.webContents.send("nocookie")
+        }
+      }).catch((error) => {
+        console.log(error)
+      })
+    })
+
+>>>>>>> b58277811ea95443111af14434a66e24e25aaffc
     window.maximize();
 
     window.on("closed", () => {
