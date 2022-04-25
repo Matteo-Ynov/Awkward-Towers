@@ -4,6 +4,8 @@ function setCookies() {
     
     
     ipcRenderer.send("setCookie", (document.getElementById("email").value))
+
+    /* document.getElementById('myFormId').action="./menu.html" */
 }
 
 function getCookies() {
