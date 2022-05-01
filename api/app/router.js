@@ -9,6 +9,8 @@ const router = express.Router();
 
 router.get("/users", UsersController.findAll);
 router.get("/user/:username", UsersController.findByName);
+router.delete("/user/:username", UsersController.delete);
+router.patch("/user/:username", UsersController.update);
 router.post("/users", UsersController.create);
 
 
