@@ -3,9 +3,15 @@ const { ipcRenderer } = require("electron");
 var username;
 getCookies()
 
+async function deleteAccount() {
+    var username = document.getElementById("player_name").innerHTML.split(" : ")[1];
+    const response = await fetch(`http://localhost:5001/user/${username}`, {
+        method: 'DELETE',
+    });
+    console.log(response)
+}
 
 function info(username) {
-    console.log(username)
     fetch(`http://localhost:5001/user/${username}`)
     .then((res) => res.json())
     .then((data) => {

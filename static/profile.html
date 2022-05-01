@@ -10,6 +10,7 @@
     <script src="../script/script.js"></script>
     <script src="../script/profile.js"></script>
 
+
 </head>
 <body>
     <section class="vh-100">
@@ -21,8 +22,10 @@
                 <div style="width: 18rem;">
                     <div class="card-body">
                         <p id="player_name" class="card-title">Username : </p>
-                        <p id="player_score" class="card-title">highest score : </p>
+                        <p id="player_score" class="card-title">Highest score : </p>
                     </div>
+                    <button onclick="window.location.href='update.html'" id="update" class="btn btn-primary crud_button">Update Account</button>
+                    <button onclick="deleteAccount()" class="btn btn-primary crud_button">Delete Account</button>
                 </div>
             </div>
         </div>

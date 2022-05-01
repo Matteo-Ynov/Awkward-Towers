@@ -107,3 +107,8 @@ canvas {
 .card-title {
     color: #fff;
 }
+
+.crud_button {
+    min-width: 50px;
+    margin: 20px;
+}
