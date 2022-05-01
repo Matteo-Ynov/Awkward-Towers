@@ -9,6 +9,9 @@ async function deleteAccount() {
         method: 'DELETE',
     });
     console.log(response)
+    const {ipcRenderer} = require("electron");
+    await ipcRenderer.send("deleteCookies")
+    window.location.href = './index.html'
 }
 
 function info(username) {

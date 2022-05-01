@@ -24,15 +24,30 @@ function validate() {
     }
   }
   if (send === true){
-      fetch(`http://localhost:5001/user/a`, {
-        method: `PATCH`,
-        headers: req_headers,
-      }).then((response) => {
-        const { ipcRenderer } = require("electron");
-        ipcRenderer.send("deleteCookies")
-        ipcRenderer.send("setCookie", req_headers['username'])
-        window.location.href = "profile.html"
-      })
+    updateCookies(req_headers)
   }
 
 }
+
+async function updateCookies(req_headers) {
+  const {ipcRenderer} = require("electron");
+  await ipcRenderer.send("updateCookies", req_headers)
+}
+
+ipcRenderer.on("updateCookieok", (e, cookies, req_headers) => {
+  username = cookies[0]["name"]
+  console.log(username)
+  fetch(`http://localhost:5001/user/${username}`, {
+    method: `PATCH`,
+    headers: req_headers,
+  }).then((response) => {
+    const { ipcRenderer } = require("electron");
+    ipcRenderer.send("deleteCookies")
+    ipcRenderer.send("setCookie", req_headers['username'])
+    window.location.href = "profile.html"
+  })
+})
+
+ipcRenderer.on("updateNocookie", (e, cookies) => {
+  window.location.href = './index.html'
+})

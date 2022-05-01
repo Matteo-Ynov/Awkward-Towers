@@ -39,6 +39,19 @@ app.on("ready", () => {
       })
   })
 
+  ipcMain.on("updateCookies", (e, req_headers) => {
+    session.defaultSession.cookies.get({ url: 'http://awkward-towers' })
+      .then((cookies) => {
+        if (cookies.length !== 0) {
+          window.webContents.send("updateCookieok", cookies, req_headers)
+        } else {
+          window.webContents.send("updateNocookie")
+        }
+      }).catch((error) => {
+        console.log(error)
+      })
+  })
+
   ipcMain.on("deleteCookies", () => {
     session.defaultSession.clearStorageData({ options: { origin: 'XXX', storages: ['cookies'] } });
   })
