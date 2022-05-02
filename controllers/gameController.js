@@ -32,9 +32,11 @@ class gameController {
         this.offSetTarget = 0;
         this.currentOffsetLoop;
 
-        this.highscore = 200;
-
         this.currentScore = 0;
+
+        this.gold = 0;
+        this.highscore = 0;
+        this.username = "";
 
         this.scoreDiv = document.getElementById("score");
     }
@@ -167,7 +169,9 @@ class gameController {
                         "+ " + Math.round(this.currentScore) + " Gold";
                     if (this.currentScore > this.highscore) {
                         document.getElementById("highscore").classList.remove("hide");
+                        this.highscore = Math.round(this.currentScore);
                     }
+                    this.updateGoldAndHighScore();
                 } else {
                     this.generateNextShape();
                 }
@@ -222,5 +226,19 @@ class gameController {
                 clearInterval(this.currentOffsetLoop);
             }
         }, 10);
+    }
+
+    updateGoldAndHighScore() {
+        this.gold += Math.round(this.currentScore);
+
+        var req_headers = {
+            gold: this.gold,
+            highest_score: this.highscore,
+        };
+        console.log(req_headers);
+        fetch(`http://localhost:5001/user/${this.username}`, {
+            method: `PATCH`,
+            headers: req_headers,
+        });
     }
 }
