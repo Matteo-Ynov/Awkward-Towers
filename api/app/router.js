@@ -30,7 +30,7 @@ router.post("/friends", FriendController.create);
 
 
 router.get("/cosmetics", CosmeticController.findAll);
-router.get("/cosmetic/:id", CosmeticController.findById);
+router.get("/cosmetic/:id", CosmeticController.findByName);
 router.post("/cosmetics", CosmeticController.create);
 
 module.exports = router;

@@ -18,7 +18,7 @@ const UsersSchema = new Schema({
   gold: Number,
   elo: Number,
   connected: Boolean,
-  last_connection: Date,
+  current_skin: String,
 });
 
 const Users = model("Users", UsersSchema, "users");

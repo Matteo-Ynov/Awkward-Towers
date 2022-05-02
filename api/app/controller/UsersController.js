@@ -22,7 +22,7 @@ const UsersController = {
       newUsers.gold = request.body.gold;
       newUsers.elo = request.body.elo;
       newUsers.connected = request.body.connected;
-      newUsers.last_connection = request.body.last_connection;
+      newUsers.current_skin = request.body.current_skin;
       const data = await newUsers.save();
       response.send("data inserted");
     } catch (error) {
