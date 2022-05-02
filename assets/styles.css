@@ -3,7 +3,6 @@ body {
     padding: 0;
     margin: 0;
     background: linear-gradient(to bottom right, #1e3c72, #2a5298);
-    display: flex;
 }
 
 canvas {
@@ -18,12 +17,6 @@ canvas {
     height: 100%;
     position: absolute;
     z-index: 2;
-}
-
-.settings {
-    width: 10%;
-    height: auto;
-    float: right;
 }
 
 .golds {
@@ -120,7 +113,7 @@ canvas {
     color: #fff;
 }
 
-.container {
+.container_endgame {
     width: 100%;
     height: 100%;
     display: flex;
