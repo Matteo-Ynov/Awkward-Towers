@@ -2,7 +2,6 @@ const { response } = require("express");
 const res = require("express/lib/response");
 const Users = require("../models/Users");
 
-
 const UsersController = {
   findAll: async (request, response) => {
     try {
@@ -58,8 +57,7 @@ const UsersController = {
     try {
       headers = request.headers
       const filter = { username: request.params.username };
-      const update = { username: headers["username"], password: headers["password"], gold: headers["gold"], highest_score: headers["highest_score"] };
-      console.log(update)
+      const update = { username: headers["username"], password: headers["password"], gold: headers["gold"], highest_score: headers["highest_score"], current_skin: headers["current_skin"] };
       const targetUsers = await Users.findOneAndUpdate(filter, update, {
         new: true
       });

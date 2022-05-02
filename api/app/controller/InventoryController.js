@@ -15,8 +15,8 @@ const InventoryController = {
   create: async (request, response) => {
     try {
       const newInventory = new Inventory();
-      newInventory.user_id = request.body.user_id;
-      newInventory.cosmetic_id = request.body.cosmetic_id;
+      newInventory.username = request.params.username;
+      newInventory.cosmetic_id = request.headers.cosmetic_id;
       const data = await newInventory.save();
       response.send("data inserted");
     } catch (error) {
@@ -24,18 +24,18 @@ const InventoryController = {
       response.status(500).send(error.message);
     }
   },
-  findById: async(request, response) =>{
+  findById: async (request, response) => {
     try {
-        const targetId = request.params.id;
-        const targetInventory = await Inventory.findOne({
-            id: targetId
-        })
-        response.json(targetInventory)
+      const targetName = request.params.username;
+      const targetInventory = await Inventory.find({
+        username: targetName
+      })
+      response.json(targetInventory)
     } catch (error) {
-        console.error(error);
-        response.status(500).send(error.message);
+      console.error(error);
+      response.status(500).send(error.message);
     }
-},
+  },
 };
 
 module.exports = InventoryController;

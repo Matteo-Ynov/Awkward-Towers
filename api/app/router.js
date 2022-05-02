@@ -15,8 +15,9 @@ router.post("/users", UsersController.create);
 
 
 router.get("/inventories", InventoryController.findAll);
-router.get("/inventory/:id", InventoryController.findById);
-router.post("/inventories", InventoryController.create);
+router.get("/inventory/:username", InventoryController.findById);
+router.post("/inventory/:username", InventoryController.create);
+
 
 
 router.get("/games", GameController.findAll);

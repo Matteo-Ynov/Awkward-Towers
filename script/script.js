@@ -1,12 +1,31 @@
 var game;
 var WINDOW_WIDTH, WINDOW_HEIGHT;
+const { BrowserWindow, ipcRenderer } = require("electron");
+
+ipcRenderer.on("nocookie", (e, cookies) => {
+    window.location.href = "./index.html";
+});
 
 var setup = () => {
     (WINDOW_WIDTH = windowWidth), (WINDOW_HEIGHT = windowHeight);
     createCanvas(WINDOW_WIDTH, WINDOW_HEIGHT);
     game = new gameController();
     game.generateNextShape();
+
+    ipcRenderer.send("getCookies");
 };
+
+ipcRenderer.on("cookieok", (e, cookies) => {
+    var username = cookies[0]["name"];
+    fetch(`http://localhost:5001/user/${username}`)
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data);
+            game.gold = data["gold"];
+            game.highscore = data["highest_score"];
+            game.username = data["username"];
+        });
+});
 
 var draw = () => {
     game.draw();

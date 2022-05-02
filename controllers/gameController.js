@@ -1,5 +1,3 @@
-const { ipcRenderer } = require("electron");
-
 class gameController {
     constructor() {
         this.isPlaying = true;
@@ -27,16 +25,18 @@ class gameController {
 
         Matter.Common.setDecomp(require("poly-decomp"));
 
-        this.lives = 5;
+        this.lives = 1;
 
         this.cumulOffset = 0;
         this.currentOffset = 0;
         this.offSetTarget = 0;
         this.currentOffsetLoop;
 
-        this.highscore = 200;
-
         this.currentScore = 0;
+
+        this.gold = 0;
+        this.highscore = 0;
+        this.username = "";
 
         this.scoreDiv = document.getElementById("score");
     }
@@ -162,8 +162,6 @@ class gameController {
                 this.lives -= 1;
                 if (this.lives === 0) {
                     this.isPlaying = false;
-                    getCookies()
-                    console.log(username)
                     document.getElementById("container").classList.remove("hide");
                     this.scoreDiv.innerHTML =
                         "Your score : " + Math.round(this.currentScore);
@@ -171,7 +169,9 @@ class gameController {
                         "+ " + Math.round(this.currentScore) + " Gold";
                     if (this.currentScore > this.highscore) {
                         document.getElementById("highscore").classList.remove("hide");
+                        this.highscore = Math.round(this.currentScore);
                     }
+                    this.updateGoldAndHighScore();
                 } else {
                     this.generateNextShape();
                 }
@@ -227,20 +227,18 @@ class gameController {
             }
         }, 10);
     }
+
+    updateGoldAndHighScore() {
+        this.gold += Math.round(this.currentScore);
+
+        var req_headers = {
+            gold: this.gold,
+            highest_score: this.highscore,
+        };
+        console.log(req_headers);
+        fetch(`http://localhost:5001/user/${this.username}`, {
+            method: `PATCH`,
+            headers: req_headers,
+        });
+    }
 }
-
-
-var username;
-
-async function getCookies() {
-    const {ipcRenderer} = require("electron");
-    await ipcRenderer.send("getCookies")
-}
-
-ipcRenderer.on("cookieok", (e, cookies) => {
-    username = cookies[0]["name"]
-})
-
-ipcRenderer.on("nocookie", (e, cookies) => {
-    window.location.href = './index.html'
-  })
