@@ -3,11 +3,11 @@ const { Schema, model } = require("../database");
 
 /**
  * @typedef Inventory
- * @property {string} user_id
+ * @property {string} username
  * @property {string} cosmetic_id
  */
 const InventorySchema = new Schema({
-  user_id: String,
+  username: String,
   cosmetic_id: String,
 });
 
