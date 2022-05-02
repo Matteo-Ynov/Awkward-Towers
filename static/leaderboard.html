@@ -8,18 +8,23 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="../assets/styles.css" />
     <script type="text/javascript" src="../script/login.js"></script>
+    <script type="text/javascript" src="../script/leaderboard.js"></script>
     <script>getCookies()</script>
 
 </head>
 <body>
     <section class="vh-100">
+        <a href="menu.html" class="back-element">Back</a>
         <div class="container h-100">
-            <button class="btn btn-primary btn-lg btn-block logout mt-4" onclick="deleteCookies()">Logout</button>
-            <div class="centered">
-                <a href="game.html" class="menu-element">Play</a>
-                <a href="shop.html" class="menu-element">Shop</a>
-                <a href="profile.html" class="menu-element">Profile</a>
-                <a href="leaderboard.html" class="menu-element">Leaderboard</a>
+            <div class="centered text-center">
+                <h1 class="menu-elements">Leaderboard</h1>
+                <div style="width: 18rem;">
+                    <div class="card-body">
+                        <p id="first_place" class="card-title"></p>
+                        <p id="second_place" class="card-title"></p>
+                        <p id="third_place" class="card-title"></p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

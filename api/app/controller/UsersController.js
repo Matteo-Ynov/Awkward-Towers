@@ -58,7 +58,7 @@ const UsersController = {
     try {
       headers = request.headers
       const filter = { username: request.params.username };
-      const update = { username: headers["username"], password: headers["password"], gold: headers["gold"] };
+      const update = { username: headers["username"], password: headers["password"], gold: headers["gold"], highest_score: headers["highest_score"] };
       console.log(update)
       const targetUsers = await Users.findOneAndUpdate(filter, update, {
         new: true
