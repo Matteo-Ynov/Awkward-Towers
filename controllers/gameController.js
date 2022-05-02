@@ -66,11 +66,18 @@ class gameController {
         if (!this.cooldown) {
             this.currentShape.show();
         }
+        strokeWeight(4);
         line(
             0,
             this.convertHighscoreToYCoords(),
             WINDOW_WIDTH,
             this.convertHighscoreToYCoords()
+        );
+        strokeWeight(1);
+        image(
+            highscorePanel,
+            20,
+            this.convertHighscoreToYCoords() - highscorePanel.height / 2
         );
         image(
             groundImage,

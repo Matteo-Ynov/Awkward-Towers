@@ -18,6 +18,8 @@ var groundImage;
 
 var allShapes;
 
+var highscorePanel;
+
 const getOffset = (shape) => {
     switch (shape) {
         case 5:
@@ -61,6 +63,10 @@ function preload() {
     });
     heartImage = loadImage("../assets/heart.png", () => {
         heartImage.resize(50, 50);
+    });
+
+    highscorePanel = loadImage("../assets/highscorepanel.png", () => {
+        highscorePanel.resize(190, 45);
     });
 
     allShapes = [
