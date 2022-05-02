@@ -34,25 +34,25 @@ function preload() {
         groundImage.resize(600, 150);
     });
 
-    TShapeImage = loadImage("../assets/shapes-images/T-Shape.png", () => {
+    TShapeImage = loadImage("../assets/shapes-images-basic/T-Shape.png", () => {
         TShapeImage.resize(150, 100);
     });
-    LShapeImage = loadImage("../assets/shapes-images/L-Shape.png", () => {
+    LShapeImage = loadImage("../assets/shapes-images-basic/L-Shape.png", () => {
         LShapeImage.resize(150, 100);
     });
-    JShapeImage = loadImage("../assets/shapes-images/J-Shape.png", () => {
+    JShapeImage = loadImage("../assets/shapes-images-basic/J-Shape.png", () => {
         JShapeImage.resize(150, 100);
     });
-    SShapeImage = loadImage("../assets/shapes-images/S-Shape.png", () => {
+    SShapeImage = loadImage("../assets/shapes-images-basic/S-Shape.png", () => {
         SShapeImage.resize(150, 100);
     });
-    ZShapeImage = loadImage("../assets/shapes-images/Z-Shape.png", () => {
+    ZShapeImage = loadImage("../assets/shapes-images-basic/Z-Shape.png", () => {
         ZShapeImage.resize(150, 100);
     });
-    OShapeImage = loadImage("../assets/shapes-images/O-Shape.png", () => {
+    OShapeImage = loadImage("../assets/shapes-images-basic/O-Shape.png", () => {
         OShapeImage.resize(100, 100);
     });
-    IShapeImage = loadImage("../assets/shapes-images/I-Shape.png", () => {
+    IShapeImage = loadImage("../assets/shapes-images-basic/I-Shape.png", () => {
         IShapeImage.resize(200, 50);
     });
 

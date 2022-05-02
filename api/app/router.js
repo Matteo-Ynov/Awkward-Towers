@@ -9,6 +9,8 @@ const router = express.Router();
 
 router.get("/users", UsersController.findAll);
 router.get("/user/:username", UsersController.findByName);
+router.delete("/user/:username", UsersController.delete);
+router.patch("/user/:username", UsersController.update);
 router.post("/users", UsersController.create);
 
 
@@ -28,7 +30,7 @@ router.post("/friends", FriendController.create);
 
 
 router.get("/cosmetics", CosmeticController.findAll);
-router.get("/cosmetic/:id", CosmeticController.findById);
+router.get("/cosmetic/:id", CosmeticController.findByName);
 router.post("/cosmetics", CosmeticController.create);
 
 module.exports = router;

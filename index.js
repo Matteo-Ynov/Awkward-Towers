@@ -13,13 +13,15 @@ app.on("ready", () => {
     });
     window.webContents.openDevTools();
 
-    window.loadFile("./static/game.html");
+    window.loadFile("./static/index.html");
 
     ipcMain.on("setCookie", (e, username) => {
         const cookie = { url: "http://awkward-towers", name: username };
         session.defaultSession.cookies.set(cookie).then(
             () => {
-                // success
+                session.defaultSession.cookies.get({}).then((cookie) => {
+                    console.log(cookie);
+                });
             },
             (error) => {
                 console.error(error);
@@ -40,6 +42,27 @@ app.on("ready", () => {
             .catch((error) => {
                 console.log(error);
             });
+    });
+
+    ipcMain.on("updateCookies", (e, req_headers) => {
+        session.defaultSession.cookies
+            .get({ url: "http://awkward-towers" })
+            .then((cookies) => {
+                if (cookies.length !== 0) {
+                    window.webContents.send("updateCookieok", cookies, req_headers);
+                } else {
+                    window.webContents.send("updateNocookie");
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    });
+
+    ipcMain.on("deleteCookies", () => {
+        session.defaultSession.clearStorageData({
+            options: { origin: "XXX", storages: ["cookies"] },
+        });
     });
 
     window.maximize();

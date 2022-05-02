@@ -10,8 +10,18 @@ const { Schema, model } = require("../database");
 const CosmeticSchema = new Schema({
   name: String,
   price: Number,
-  type: String,
 });
 
 const Cosmetic = model("Cosmetic", CosmeticSchema, "cosmetic");
+
+const gold = new Cosmetic();
+gold.name = "gold";
+gold.price = 10000;
+gold.save();
+
+const obama = new Cosmetic();
+obama.name = "obama";
+obama.price = 30000;
+obama.save();
+
 module.exports = Cosmetic;

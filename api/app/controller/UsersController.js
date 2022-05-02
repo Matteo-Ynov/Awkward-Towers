@@ -22,7 +22,7 @@ const UsersController = {
       newUsers.gold = request.body.gold;
       newUsers.elo = request.body.elo;
       newUsers.connected = request.body.connected;
-      newUsers.last_connection = request.body.last_connection;
+      newUsers.current_skin = request.body.current_skin;
       const data = await newUsers.save();
       response.send("data inserted");
     } catch (error) {
@@ -30,19 +30,45 @@ const UsersController = {
       response.status(500).send(error.message);
     }
   },
-  findByName: async(request, response) =>{
+  findByName: async (request, response) => {
     try {
-      Users.deleteMany({})
-        const targetUsername = request.params.username;
-        const targetUsers = await Users.findOne({
-            username: targetUsername
-        })
-        response.json(targetUsers)
+      const targetUsername = request.params.username;
+      const targetUsers = await Users.findOne({
+        username: targetUsername
+      })
+      response.json(targetUsers)
     } catch (error) {
-        console.error(error);
-        response.status(500).send(error.message);
+      console.error(error);
+      response.status(500).send(error.message);
     }
-},
+  },
+  delete: async (request, response) => {
+    try {
+      const targetUsername = request.params.username;
+      const targetUsers = await Users.findOneAndDelete({
+        username: targetUsername
+      })
+      response.json(targetUsers)
+    } catch (error) {
+      console.error(error);
+      response.status(500).send(error.message);
+    }
+  },
+  update: async (request, response) => {
+    try {
+      headers = request.headers
+      const filter = { username: request.params.username };
+      const update = { username: headers["username"], password: headers["password"], gold: headers["gold"] };
+      console.log(update)
+      const targetUsers = await Users.findOneAndUpdate(filter, update, {
+        new: true
+      });
+      response.json(request.headers)
+    } catch (error) {
+      console.error(error);
+      response.status(500).send(error.message);
+    }
+  }
 };
 
 module.exports = UsersController;

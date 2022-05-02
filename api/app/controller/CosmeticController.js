@@ -15,9 +15,8 @@ const CosmeticController = {
   create: async (request, response) => {
     try {
       const newCosmetic = new Cosmetic();
-      newCosmetic.user_id_1 = request.body.user_id_1;
-      newCosmetic.user_id_2 = request.body.user_id_2;
-      newCosmetic.added_at = request.body.seed;
+      newCosmetic.name = request.body.name;
+      newCosmetic.price = request.body.price;
       const data = await newCosmetic.save();
       response.send("data inserted");
     } catch (error) {
@@ -25,11 +24,11 @@ const CosmeticController = {
       response.status(500).send(error.message);
     }
   },
-  findById: async(request, response) =>{
+  findByName: async(request, response) =>{
     try {
-        const targetId = request.params.id;
+        const targetName = request.params.name;
         const targetCosmetic = await Cosmetic.findOne({
-            id: targetId
+            name: targetName
         })
         response.json(targetCosmetic)
     } catch (error) {

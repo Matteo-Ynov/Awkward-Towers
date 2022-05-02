@@ -27,9 +27,20 @@ class gameController {
 
         this.lives = 1;
 
+        this.cumulOffset = 0;
         this.currentOffset = 0;
         this.offSetTarget = 0;
         this.currentOffsetLoop;
+
+        this.highscore = 200;
+
+        this.currentScore = 0;
+
+        this.scoreDiv = document.getElementById("score");
+    }
+
+    convertHighscoreToYCoords() {
+        return WINDOW_HEIGHT + this.cumulOffset - this.highscore;
     }
 
     generateNextShape() {
@@ -53,6 +64,12 @@ class gameController {
         if (!this.cooldown) {
             this.currentShape.show();
         }
+        line(
+            0,
+            this.convertHighscoreToYCoords(),
+            WINDOW_WIDTH,
+            this.convertHighscoreToYCoords()
+        );
         image(
             groundImage,
             WINDOW_WIDTH / 2 - 300,
@@ -98,6 +115,15 @@ class gameController {
                 this.cooldown = false;
                 this.generateNextShape();
                 this.currentRotation = 0;
+                var minY;
+                for (var i = 0; i < this.objects.length; i++) {
+                    if (!minY || minY > this.objects[i].body.position.y) {
+                        minY = this.objects[i].body.position.y;
+                    }
+                }
+
+                this.currentScore = WINDOW_HEIGHT - minY + this.cumulOffset;
+
                 clearInterval(this.cooldownInterval);
             } else {
                 this.shutdownCooldownHandler();
@@ -117,6 +143,15 @@ class gameController {
                 this.cooldown = false;
                 this.generateNextShape();
                 this.currentRotation = 0;
+
+                var minY;
+                for (var i = 0; i < this.objects.length; i++) {
+                    if (!minY || minY > this.objects[i].body.position.y) {
+                        minY = this.objects[i].body.position.y;
+                    }
+                }
+                this.currentScore = WINDOW_HEIGHT - minY + this.cumulOffset;
+
                 clearInterval(this.cooldownInterval);
                 clearTimeout(this.shutdownCooldown);
             } else if (
@@ -126,6 +161,13 @@ class gameController {
                 if (this.lives === 0) {
                     this.isPlaying = false;
                     document.getElementById("container").classList.remove("hide");
+                    this.scoreDiv.innerHTML =
+                        "Your score : " + Math.round(this.currentScore);
+                    document.getElementById("gold").innerHTML =
+                        "+ " + Math.round(this.currentScore) + " Gold";
+                    if (this.currentScore > this.highscore) {
+                        document.getElementById("highscore").classList.remove("hide");
+                    }
                 } else {
                     this.generateNextShape();
                 }
@@ -173,6 +215,7 @@ class gameController {
                 Matter.Body.translate(this.objects[i].body, { x: 0, y: 1 });
             }
             this.currentOffset += 1;
+            this.cumulOffset += 1;
             if (this.currentOffset >= this.offSetTarget) {
                 this.offSetTarget = 0;
                 this.currentOffset = 0;
