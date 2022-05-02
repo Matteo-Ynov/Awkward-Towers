@@ -1,3 +1,5 @@
+const { ipcRenderer } = require("electron");
+
 class gameController {
     constructor() {
         this.isPlaying = true;
@@ -25,7 +27,7 @@ class gameController {
 
         Matter.Common.setDecomp(require("poly-decomp"));
 
-        this.lives = 1;
+        this.lives = 5;
 
         this.cumulOffset = 0;
         this.currentOffset = 0;
@@ -162,6 +164,8 @@ class gameController {
                 this.lives -= 1;
                 if (this.lives === 0) {
                     this.isPlaying = false;
+                    getCookies();
+                    console.log(username);
                     document.getElementById("container").classList.remove("hide");
                     this.scoreDiv.innerHTML =
                         "Your score : " + Math.round(this.currentScore);

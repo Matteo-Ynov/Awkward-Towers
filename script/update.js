@@ -36,7 +36,6 @@ async function updateCookies(req_headers) {
 
 ipcRenderer.on("updateCookieok", (e, cookies, req_headers) => {
   username = cookies[0]["name"]
-  console.log(username)
   fetch(`http://localhost:5001/user/${username}`, {
     method: `PATCH`,
     headers: req_headers,

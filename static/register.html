@@ -12,6 +12,7 @@
 <body>
     <section class="vh-100">
         <div class="container h-100">
+          <a href="index.html" class="back-element">Back</a>
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-xl-9">
               <div class="card" style="border-radius: 15px;">
@@ -46,6 +47,21 @@
                     </div>
         
                     <hr class="mx-n3">
+
+                    <div class="row align-items-center pt-4 pb-3">
+                      <div class="col-md-3 ps-5">
+      
+                      <h6 class="mb-0">Confirm Password</h6>
+      
+                      </div>
+                      <div class="col-md-9 pe-5">
+      
+                        <input pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" id="password_confirm" name="password_confirm" type="password" title="Veuillez utiliser un minimum de 6 caractères comprenant une majuscule, une minuscule et un chiffre" class="form-control form-control-lg" required/>
+      
+                      </div>
+                    </div>
+      
+                  <hr class="mx-n3">
         
                     <div class="row align-items-center px-5 py-4">
                         <button id="submitButton" class="btn btn-primary btn-lg btn-block" type="submit">Register</button>
