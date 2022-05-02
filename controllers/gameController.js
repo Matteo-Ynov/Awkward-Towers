@@ -25,7 +25,7 @@ class gameController {
 
         Matter.Common.setDecomp(require("poly-decomp"));
 
-        this.lives = 1;
+        this.lives = 5;
 
         this.cumulOffset = 0;
         this.currentOffset = 0;

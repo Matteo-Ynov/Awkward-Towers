@@ -3,6 +3,8 @@ var Engine = Matter.Engine,
     Bodies = Matter.Bodies,
     Runner = Matter.Runner;
 
+var currentSkin = "basic";
+
 var TShapeImage;
 var LShapeImage;
 var JShapeImage;
@@ -36,27 +38,48 @@ function preload() {
         groundImage.resize(600, 150);
     });
 
-    TShapeImage = loadImage("../assets/shapes-images-basic/T-Shape.png", () => {
-        TShapeImage.resize(150, 100);
-    });
-    LShapeImage = loadImage("../assets/shapes-images-basic/L-Shape.png", () => {
-        LShapeImage.resize(150, 100);
-    });
-    JShapeImage = loadImage("../assets/shapes-images-basic/J-Shape.png", () => {
-        JShapeImage.resize(150, 100);
-    });
-    SShapeImage = loadImage("../assets/shapes-images-basic/S-Shape.png", () => {
-        SShapeImage.resize(150, 100);
-    });
-    ZShapeImage = loadImage("../assets/shapes-images-basic/Z-Shape.png", () => {
-        ZShapeImage.resize(150, 100);
-    });
-    OShapeImage = loadImage("../assets/shapes-images-basic/O-Shape.png", () => {
-        OShapeImage.resize(100, 100);
-    });
-    IShapeImage = loadImage("../assets/shapes-images-basic/I-Shape.png", () => {
-        IShapeImage.resize(200, 50);
-    });
+    TShapeImage = loadImage(
+        `../assets/shapes-images-${currentSkin}/T-Shape.png`,
+        () => {
+            TShapeImage.resize(150, 100);
+        }
+    );
+    LShapeImage = loadImage(
+        `../assets/shapes-images-${currentSkin}/L-Shape.png`,
+        () => {
+            LShapeImage.resize(150, 100);
+        }
+    );
+    JShapeImage = loadImage(
+        `../assets/shapes-images-${currentSkin}/J-Shape.png`,
+        () => {
+            JShapeImage.resize(150, 100);
+        }
+    );
+    SShapeImage = loadImage(
+        `../assets/shapes-images-${currentSkin}/S-Shape.png`,
+        () => {
+            SShapeImage.resize(150, 100);
+        }
+    );
+    ZShapeImage = loadImage(
+        `../assets/shapes-images-${currentSkin}/Z-Shape.png`,
+        () => {
+            ZShapeImage.resize(150, 100);
+        }
+    );
+    OShapeImage = loadImage(
+        `../assets/shapes-images-${currentSkin}/O-Shape.png`,
+        () => {
+            OShapeImage.resize(100, 100);
+        }
+    );
+    IShapeImage = loadImage(
+        `../assets/shapes-images-${currentSkin}/I-Shape.png`,
+        () => {
+            IShapeImage.resize(200, 50);
+        }
+    );
 
     heartEmptyImage = loadImage("../assets/heart-empty.png", () => {
         heartEmptyImage.resize(50, 50);

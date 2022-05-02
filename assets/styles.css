@@ -166,3 +166,8 @@ canvas {
     font-weight: bold;
     color: gold;
 }
+
+.back-button {
+    position: absolute;
+    margin: 30px;
+}
