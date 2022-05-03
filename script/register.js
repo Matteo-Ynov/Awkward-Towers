@@ -18,9 +18,6 @@ function registerFormSubmit() {
   console.log(data)
 
   var send = false
-  if (usernameData != ""){
-    send = true;
-  }
   if (passwordData != ""){
     if (passwordConfirmData != ""){
       if (passwordData == passwordConfirmData){
