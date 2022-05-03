@@ -1,4 +1,3 @@
-console.log("oefihybzuebhuo")
 async function deleteCookies() {
     const {ipcRenderer} = require("electron");
     await ipcRenderer.send("deleteCookies")
