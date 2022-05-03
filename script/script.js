@@ -26,8 +26,6 @@ ipcRenderer.on("cookieok", (e, cookies) => {
             game.username = data["username"];
             currentSkin = data["current_skin"];
             preload();
-
-            game.generateNextShape();
         });
 });
 
