@@ -10,7 +10,7 @@ var setup = () => {
     (WINDOW_WIDTH = windowWidth), (WINDOW_HEIGHT = windowHeight);
     createCanvas(WINDOW_WIDTH, WINDOW_HEIGHT);
     game = new gameController();
-    game.generateNextShape();
+    // game.generateNextShape();
 
     ipcRenderer.send("getCookies");
 };
@@ -26,6 +26,7 @@ ipcRenderer.on("cookieok", (e, cookies) => {
             game.username = data["username"];
             currentSkin = data["current_skin"];
             preload();
+            game.generateNextShape();
         });
 });
 
