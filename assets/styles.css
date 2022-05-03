@@ -171,3 +171,9 @@ canvas {
     position: absolute;
     margin: 30px;
 }
+
+.logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
