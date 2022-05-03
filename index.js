@@ -11,7 +11,7 @@ app.on("ready", () => {
         },
         autoHideMenuBar: false,
     });
-    window.webContents.openDevTools();
+    // window.webContents.openDevTools();
 
     window.loadFile("./static/index.html");
 
